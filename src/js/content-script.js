@@ -23,6 +23,8 @@
   let isOn = false;
   let isWidthOn = false;
   let triggeringWithMouse = true;
+  let originOffsetX = '0';
+  let originOffsetY = '0';
   let elt;
   elt = document.createElement('pre');
   elt.id = DISPLAY_ID;
@@ -139,7 +141,7 @@
     let topOffset = 20;
     let leftOffset = 10;
     let tooltipText = '';
-    let tooltipTextArr = [(ev.clientX + ', ' + ev.clientY)];
+    let tooltipTextArr = [(ev.clientX - originOffsetX) + ', ' + (ev.clientY - originOffsetY)];
     // tooltipText = ev.clientX + ', ' + ev.clientY;
     if (longFormat) {
       tooltipTextArr[0] += ' (page)';
@@ -293,6 +295,8 @@
   const setOptions = (opts) => {
     measureArea = opts.measureArea;
     longFormat = opts.longFormat;
+    originOffsetX = opts.originOffsetX || 0;
+    originOffsetY = opts.originOffsetY || 0;
     displayMousePosition = opts.displayMousePosition;
     document.removeEventListener('keydown', showWidthOn);
     document.removeEventListener('mousedown', showWidthOn);

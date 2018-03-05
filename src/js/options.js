@@ -15,7 +15,9 @@ let defaults = {
   displayMousePosition: true,
   trigger: TRIGGERS.MOUSE,
   measureArea: true,
-  doScreenCoordinates: false
+  doScreenCoordinates: false,
+  originOffsetX: 0,
+  originOffsetY: 0
 };
 function resetOptions () {
   setOptions(defaults);
@@ -54,6 +56,11 @@ function getInputValueFromForm () {
   function getInputValueChecked (item) {
     return document.getElementById(item).checked;
   }
+
+  function getInputValue (item) {
+    return document.getElementById(item).value;
+  }
+
   let isKeyboard = getInputValueChecked('trigger-keyboard');
   let isMouse = getInputValueChecked('trigger-mouse');
   if (isKeyboard) {
@@ -66,6 +73,8 @@ function getInputValueFromForm () {
   o.measureArea = !!getInputValueChecked('measure-area');
   o.longFormat = !!getInputValueChecked('long-format');
   o.displayMousePosition = !!getInputValueChecked('display-mouse-position');
+  o.originOffsetX = getInputValue('origin-offset-x') || '0';
+  o.originOffsetY = getInputValue('origin-offset-y') || '0';
   return o;
 }
 function saveOptions () {
@@ -145,6 +154,9 @@ function restoreOptions () {
     function setChecked (item, val) {
       document.getElementById(item).checked = val;
     }
+    function setValue (item, val) {
+      document.getElementById(item).value = val;
+    }
     if (items.trigger === TRIGGERS.MOUSE) {
       setChecked('trigger-mouse', true);
     }
@@ -155,8 +167,11 @@ function restoreOptions () {
     setChecked('measure-area', items.measureArea);
     setChecked('long-format', items.longFormat);
     setChecked('display-mouse-position', items.displayMousePosition);
+    setValue('origin-offset-x', items.originOffsetX || '');
+    setValue('origin-offset-y', items.originOffsetY || '');
     updateAreaMesaureDisabledView();
     updateMousePostionDisabledView();
+    window.console.log(items);
     optionsPromise.resolver(items);
   });
 }

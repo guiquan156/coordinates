@@ -13,7 +13,7 @@ module.exports = function (grunt) {
     initMinify + ' ./bin/js/options.js > ./bin/js/options.min.js;',
     'mv ./bin/js/popup.min.js ./bin/js/popup.js;',
     'mv ./bin/js/content-script.min.js ./bin/js/content-script.js;',
-    'mv ./bin/js/options.min.js ./bin/js/options.js;',
+    'mv ./bin/js/options.min.js ./bin/js/options.js;'
 
   ].join(' ');
   let gconfig = {
@@ -140,6 +140,6 @@ module.exports = function (grunt) {
     }
   };
   grunt.initConfig(gconfig);
-  grunt.registerTask('default', ['clean', 'copy', 'webpack', 'shell:minify']);
+  grunt.registerTask('default', ['clean', 'copy', 'webpack']);
   grunt.registerTask('dev', ['default', 'watch']);
 };

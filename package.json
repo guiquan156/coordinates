@@ -4,7 +4,8 @@
   "description": "A chrome extension to track mouse position",
   "main": "content-script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "grunt dev"
   },
   "author": "",
   "license": "ISC",

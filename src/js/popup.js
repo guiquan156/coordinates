@@ -50,7 +50,9 @@
         measureArea: true,
         doScreenCoordinates: false,
         longFormat: false,
-        displayMousePosition: true
+        displayMousePosition: true,
+        originOffsetX: 0,
+        originOffsetY: 0
       }, function (items) {
         chrome.tabs.sendMessage(tabId, {
           op: 'options',
